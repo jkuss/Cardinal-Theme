@@ -101,12 +101,12 @@ function twentyeleven_setup() {
 	//register_nav_menu( 'primary', __( 'Primary Menu', 'twentyeleven' ) );
 	
 	register_nav_menus(
-    	array( 'primary' => __( 'Primary Menu' ), 'popular' => __( 'Popular Services' ), 'footer1' => __( 'Footer 1' )/*, 'footer2' => __( 'Footer 2' ), 'footer3' => __( 'Footer 3' ), 'footer4' => __( 'Footer 4' )*/)
+    	array( 'primary' => __( 'Primary Menu' ), 'popular' => __( 'Popular Services' ), 'footer1' => __( 'Footer 1' ), 'footer-end' => __( 'Footer End' )/*, 'footer3' => __( 'Footer 3' ), 'footer4' => __( 'Footer 4' )*/)
 	);
 
 	// Add support for a variety of post formats
 	//add_theme_support( 'post-formats', array( 'aside', 'link', 'gallery', 'status', 'quote', 'image' ) );
-	
+	add_post_type_support( 'page', 'excerpt' );
 	
 	register_post_type( 'cdnl_home_feature',
 		array(
@@ -334,7 +334,7 @@ endif; // twentyeleven_admin_header_image
  * function tied to the excerpt_length filter hook.
  */
 function twentyeleven_excerpt_length( $length ) {
-	return 40;
+	return 20;
 }
 add_filter( 'excerpt_length', 'twentyeleven_excerpt_length' );
 
@@ -606,7 +606,9 @@ function makeFooterMenu($parent, $class){
 // use wp_list_pages to display parent and all child pages all generations (a tree with parent)
 	
 	$args=array(
-	  'child_of' => $parent
+	  'child_of' => $parent,
+	  'hierarchical' => 0,
+		'parent' => $parent
 	);
 	$pages = get_pages($args);  
 	if ($pages) {

@@ -29,7 +29,12 @@ get_header(); ?>
 							<?php while ( $newloop->have_posts() ) : $newloop->the_post(); ?>
 								<div class="slide">
 									<div class="feature-content">
-										<?php the_content(); ?>
+										<?php if ( has_post_thumbnail() ): 
+												the_post_thumbnail( 'single-post-thumbnail' ); 
+											elseif(get_post_meta($post->ID, 'youtube', true)):
+												echo get_post_meta($post->ID, 'youtube', true);
+											endif;	
+										?>
 									</div>
 									<div class="excerpt">
 										<?php the_title( '<h2 class="entry-title"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>

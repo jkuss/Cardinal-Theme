@@ -28,14 +28,14 @@ get_header(); ?>
 				<ul class="page-toc">
 				<?php while ( $newloop->have_posts() ) : $newloop->the_post(); ?>
 						<li>
-						<?php the_title( '<a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a>' ); ?>
+						<?php the_title( '<a href="#page-' . $post->ID . '" title="' . the_title_attribute( 'echo=0' ) . '">', '</a>' ); ?>
 						</li>
 				<?php endwhile; ?>
 				</ul>
 				<?php while ( $newloop->have_posts() ) : $newloop->the_post(); ?>
 						
 						<div class="excerpt">
-							<?php the_title( '<h2 class="entry-title"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>
+							<?php the_title( '<h2 class="entry-title" id="page-'.$post->ID.'"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>
 						
 							<div class="excerpt-content">
 								<?php the_excerpt(); ?>

@@ -93,30 +93,31 @@
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed">
 	<header id="branding" role="banner">
-    		 <nav id="access" role="navigation">
-                    <h3 class="assistive-text"><?php _e( 'Main menu', 'twentyeleven' ); ?></h3>
-                    <?php /*  Allow screen readers / text browsers to skip the navigation menu and get right to the good stuff. */ ?>
-                    <div class="skip-link"><a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to primary content', 'twentyeleven' ); ?>"><?php _e( 'Skip to primary content', 'twentyeleven' ); ?></a></div>
-                    <div class="skip-link"><a class="assistive-text" href="#secondary" title="<?php esc_attr_e( 'Skip to secondary content', 'twentyeleven' ); ?>"><?php _e( 'Skip to secondary content', 'twentyeleven' ); ?></a></div>
-                    <?php /* Our navigation menu.  If one isn't filled out, wp_nav_menu falls back to wp_page_menu. The menu assiged to the primary position is the one used. If none is assigned, the menu with the lowest ID is used. */ ?>
-                    <?php wp_nav_menu( array( 'theme_location' => 'primary', 'items_wrap' => '<ul id=\"%1$s\" class=\"%2$s\"><li class="phone"><img src="'.get_bloginfo('template_url').'/images/phone.png">'.cardinalPhone().'</li>%3$s</ul>' ) ); ?>
-                    <?php
-						// Has the text been hidden?
-						if ( 'blank' == get_header_textcolor() ) :
-					?>
-						<div class="only-search<?php if ( ! empty( $header_image ) ) : ?> with-image<?php endif; ?>">
-						<?php get_search_form(); ?>
-						</div>
-					<?php
-						else :
-					?>
-						<?php get_search_form(); ?>
-					<?php endif; ?>
-                </nav><!-- #access -->
-			<hgroup>
-				<h1 id="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"></a></h1>
-				
-			</hgroup>
+		<div class="ip-dashboard"><a href="https://ipdashboard.com/"><img src="<?php bloginfo( 'template_url' );?>/images/ip-dash.png"></a></div>
+		<nav id="access" role="navigation">
+			<h3 class="assistive-text"><?php _e( 'Main menu', 'twentyeleven' ); ?></h3>
+			<?php /*  Allow screen readers / text browsers to skip the navigation menu and get right to the good stuff. */ ?>
+			<div class="skip-link"><a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to primary content', 'twentyeleven' ); ?>"><?php _e( 'Skip to primary content', 'twentyeleven' ); ?></a></div>
+			<div class="skip-link"><a class="assistive-text" href="#secondary" title="<?php esc_attr_e( 'Skip to secondary content', 'twentyeleven' ); ?>"><?php _e( 'Skip to secondary content', 'twentyeleven' ); ?></a></div>
+			<?php /* Our navigation menu.  If one isn't filled out, wp_nav_menu falls back to wp_page_menu. The menu assiged to the primary position is the one used. If none is assigned, the menu with the lowest ID is used. */ ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'items_wrap' => '<ul id="%1$s" class="%2$s"><li class="phone"><img src="'.get_bloginfo('template_url').'/images/phone.png">'.cardinalPhone().'</li>%3$s</ul>' ) ); ?>
+			<?php
+				// Has the text been hidden?
+				if ( 'blank' == get_header_textcolor() ) :
+			?>
+				<div class="only-search<?php if ( ! empty( $header_image ) ) : ?> with-image<?php endif; ?>">
+				<?php get_search_form(); ?>
+				</div>
+			<?php
+				else :
+			?>
+				<?php get_search_form(); ?>
+			<?php endif; ?>
+		</nav><!-- #access -->
+		<hgroup>
+			<h1 id="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.png"></a></h1>
+			
+		</hgroup>
 
 	</header><!-- #branding -->
 

@@ -17,24 +17,12 @@ if ( 'content' != $current_layout ) :
 				
 				 popularWrapper(8, '');
 			?>
-			<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
-
-				<aside id="archives" class="widget">
-					<h3 class="widget-title"><?php _e( 'Archives', 'twentyeleven' ); ?></h3>
-					<ul>
-						<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
-					</ul>
+				<aside id="contact" class="widget">
+					<h3 class="widget-title">Contact Us</h3>
+					<p>We welcome any questions, comments, or concerns you may have.<br />
+					Call us at (847) 905-7122 or</p>
+					<a href="<?php echo get_permalink(57); ?>"><img src="<?php bloginfo('template_url')?>/images/arrow-big.gif" class="arrow" />Contact Cardinal</a>
 				</aside>
-
-				<aside id="meta" class="widget">
-					<h3 class="widget-title"><?php _e( 'Meta', 'twentyeleven' ); ?></h3>
-					<ul>
-						<?php wp_register(); ?>
-						<li><?php wp_loginout(); ?></li>
-						<?php wp_meta(); ?>
-					</ul>
-				</aside>
-
-			<?php endif; // end sidebar widget area ?>
+			
 		</div><!-- #secondary .widget-area -->
 <?php endif; ?>

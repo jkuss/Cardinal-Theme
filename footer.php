@@ -39,11 +39,7 @@
 			<div id="bottom-bar">
 				<div class="inner">
 				<div class="copyright">Copyright Cardinal Intellectual Property 2012</div>   
-            	<nav><ul>
-                	<li><a href="#">Contact Us</a></li>
-            		<li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Sitemap</a></li>
-                </ul></nav>
+				<?php wp_nav_menu( array( 'theme_location' => 'footer-end' ) ); ?>
 				</div>
 			</div>
 			

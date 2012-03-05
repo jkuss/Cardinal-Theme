@@ -248,6 +248,11 @@ a:hover {
 	
 }
 
+#branding .ip-dashboard {
+	position:absolute;
+	top:0;
+	right:10px;	
+}
 
 /* =Menu
 -------------------------------------------------------------- */
@@ -276,6 +281,7 @@ a:hover {
 	margin: 0 12px;
 	padding: 0 12px;
 	background: #000000;
+	border-radius:2px;
 }
 #access li {
 	display: inline-block;
@@ -287,7 +293,7 @@ a:hover {
 	
 	padding: 0;
 	text-decoration: underline;
-	padding:0 12px;
+	padding:2px 12px 0px 12px;
 }
 #access ul ul {
 	display: none;
@@ -402,7 +408,7 @@ a:hover {
 	margin:-25px 0 12px 0;
 }
 
-.entry-title {
+.entry-title, .search .page-title {
 	
 	font-size: 38px;
 	font-weight: bold;
@@ -432,6 +438,10 @@ a:hover {
 }
 .home #slideshow {
 	
+}
+
+.home #slideshow .feature-content img, .home #slideshow .excerpt-content p{
+	margin:0;
 }
 
 .home #slideshow .excerpt .entry-title {
@@ -488,6 +498,10 @@ a:hover {
 #primary .hentry {
 	margin-bottom:35px;
 	font-size:18px;
+}
+
+#primary .hentry p {
+	margin-bottom: 20px;	
 }
 
 #primary .attachment-single-post-thumbnail{
@@ -558,7 +572,7 @@ a:hover {
 	margin-bottom:40px;
 }
 
-#secondary .menu .arrow,  #primary .menu .arrow {
+#secondary .arrow,  #primary .menu .arrow {
 	margin:0 10px 7px 0;
 	vertical-align:top;
 }
@@ -574,8 +588,19 @@ a:hover {
 #secondary a,  #primary .menu a {
 	display:block;
 }
+
 #primary .menu {
 	font-size:16px;
+}
+
+#secondary #contact {
+	background-image:url(images/mail.png);
+	background-repeat:no-repeat;
+	background-position:right top;
+}
+
+#secondary #contact a {
+	margin-top:10px;	
 }
 
 
@@ -616,8 +641,46 @@ a:hover {
 }
 
 
-/* =Showcase
+/* =Search
 ----------------------------------------------- */
+
+.search .entry-title{
+	font-size:30px;
+	margin-bottom:5px;
+	font-weight:normal;
+}
+
+.search .entry-meta{
+	display:none;	
+}
+
+
+/* =Sitemap
+----------------------------------------------- */
+
+#wp-realtime-sitemap h3 {
+	font-size:30px;
+	margin-bottom:5px;
+}
+
+#wp-realtime-sitemap li {
+	margin:0 0 20px 20px;
+}
+
+
+
+
+/* =Contact Us
+----------------------------------------------- */
+.wpcf7 input, .wpcf7 textarea{
+	color:#000;
+	margin-bottom:20px;
+}
+
+.wpcf7 .wpcf7-submit{
+	
+}
+
 
 
 
@@ -661,11 +724,11 @@ a:hover {
 ----------------------------------------------- */
 
 .widget-area {
-	font-size: 12px;
+	font-size: 14px;
 }
 .widget {
 	clear: both;
-	margin: 0 0 2.2em;
+	
 }
 .widget-title {
 	font-size: 10px;
@@ -673,17 +736,17 @@ a:hover {
 	
 }
 .widget ul {
-	font-size: 15px;
+	
 	margin: 0;
 }
 .widget ul ul {
-	margin-left: 1.5em;
+	
 }
 .widget ul li {
-	font-size: 13px;
+	
 }
 .widget a {
-	font-weight: bold;
+	
 	text-decoration: none;
 }
 .widget a:hover,
@@ -881,7 +944,7 @@ section.ephemera .entry-title a span {
 #bottom-bar .copyright {
 	float:left;
 }
-#bottom-bar nav{
+#bottom-bar .menu-footer-end-container{
 	float:right;
 	
 }
