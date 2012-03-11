@@ -31,10 +31,14 @@ get_header(); ?>
 									<div class="feature-content">
 										<?php if ( has_post_thumbnail() ): 
 												the_post_thumbnail( 'single-post-thumbnail' ); 
-											elseif(get_post_meta($post->ID, 'youtube', true)):
-												echo get_post_meta($post->ID, 'youtube', true);
-											endif;	
-										?>
+											elseif(get_post_meta($post->ID, 'youtube', true)): ?>
+												<div id="<?php echo get_post_meta($post->ID, 'youtube', true); ?>"></div>
+												<script>
+													videos.push('<?php echo get_post_meta($post->ID, 'youtube', true); ?>'); 
+												</script>
+												
+											<?php endif; ?>
+										
 									</div>
 									<div class="excerpt">
 										<?php the_title( '<h2 class="entry-title"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>

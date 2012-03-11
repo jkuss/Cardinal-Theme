@@ -371,25 +371,6 @@ a:hover {
 	cursor:pointer;
 	overflow:hidden;
 }
-#branding .only-search #searchform {
-	
-}
-#branding .only-search #s {
-	
-}
-#branding .only-search #s,
-#branding .only-search #s:focus {
-	
-}
-#branding .only-search #s:focus {
-	
-}
-#branding .with-image #searchform {
-	
-}
-#branding .only-search + #access div {
-	
-}
 
 
 /* =Content
@@ -432,7 +413,7 @@ a:hover {
 	width:460px;
 	font-size:14px;
 	margin-bottom:35px;
-	background-color:#000;
+	background-color:#000000;
 	background-color:rgba(0,0,0,.6);
 	position:relative;
 }
@@ -884,8 +865,9 @@ section.ephemera .entry-title a span {
 #supplementary h3{
 	font-size:26px;
 	font-weight:400;
-	height:65px;
-	display:table-cell;
+	margin-top:35px;
+	/*height:65px;*/
+	/*display:table-cell;*/
 	vertical-align:bottom;
 	text-transform: uppercase;
 	line-height:20px;
@@ -969,18 +951,50 @@ section.ephemera .entry-title a span {
 /* =IE7
 ----------------------------------------------- */
 
-#ie7 article.intro {
-	margin-left: -7.6%;
-	margin-right: -7.6%;
-	padding-left: -7.6%;
-	padding-right: -7.6%;
-	max-width: 1000px;
+#ie7 #access .menu-main-container,#ie7 #access ul,#ie7 #access li,#ie7 #branding #searchform,#ie7 .home .pager li,#ie7 #bottom-bar li  {
+	display:inline;
+	
 }
-#ie7 section.featured-post {
-	margin-left: -7.6%;
-	margin-right: -7.6%;
-	max-width: 850px;
+
+#ie7 #access ul {
+	height:30px;
 }
-#ie7 section.recent-posts {
-	margin-right: 7.6%;
+
+#ie7 #access .phone {
+	height:41px;
 }
+
+
+#ie7 #primary #menu-popular-services {
+	width: 300px;
+}
+
+#ie7 .home #slideshow-container, #ie8 .home #slideshow-container{
+	background-color:#000000;	
+	padding-bottom:10px;
+}
+
+
+
+
+
+#ie8 #branding #searchform {
+	float:right;	
+}
+
+#ie8 #branding #s {
+	padding-top:4px;
+	
+}
+
+#ie8 #branding #searchsubmit {
+	height:30px;
+	
+}
+
+
+
+
+
+
+

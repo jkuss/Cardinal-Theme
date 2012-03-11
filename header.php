@@ -52,6 +52,63 @@
 	<script type="text/javascript" src="<?php bloginfo( 'template_url' );?>/js/jquery.cycle.all.js"></script>
 	
 	<script>
+	var videos= [];
+	
+	var tag = document.createElement('script');
+	tag.src = "http://www.youtube.com/player_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	
+	// 3. This function creates an <iframe> (and YouTube player)
+	//    after the API code downloads.
+	
+	function onYouTubePlayerAPIReady() {
+		console.log("API");
+		console.log(videos);
+		
+		for (i = 0; i < videos.length; i++){
+			
+			player = new YT.Player(videos[i], {
+				width: '460',
+				height: '264',
+				videoId: videos[i],
+				events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+				}
+			});
+			
+		}
+	
+	}
+	
+	// 4. The API will call this function when the video player is ready.
+	function onPlayerReady(event) {
+		//event.target.playVideo();
+	}
+	
+	// 5. The API calls this function when the player's state changes.
+	//    The function indicates that when playing a video (state=1),
+	//    the player should play for six seconds and then stop.
+	var playing = false;
+	
+	function onPlayerStateChange(event) {
+		console.log("change", event.data);
+		if (event.data != -1 && event.data != 0){
+			$('#slideshow').cycle('pause');
+			playing = true;
+		}
+		
+		if (event.data == 0){
+			setTimeout(function(){
+				$('#slideshow').cycle('resume');
+				playing = false;
+			}, 3000);
+		}
+	}
+	
+	
+	
 	$(document).ready(function() {
 		$("#slideshow").cycle({ 
 			fx:      'scrollHorz', 
@@ -63,11 +120,28 @@
 			pagerAnchorBuilder: function(idx, slide) { 
 				return '<li><a href="#"></a></li>'; 
 			},
-			pause: true,
-			pauseOnPagerHover: true 
+			/*pause: true,
+			pauseOnPagerHover: true */
+		});
+		
+		
+		$("#slideshow").on('mouseenter.ss', function(){
+			
+			console.log("in");
+			$('#slideshow').cycle('pause');
+			
+		}).on('mouseleave.ss', function(){
+			
+			console.log("out");
+			
+			if (!playing){
+				$('#slideshow').cycle('resume');
+			}
+			
 		});
 	   
 	});
+	
 		
 	</script>
 <?php //endif; ?>
@@ -95,10 +169,7 @@
 	<header id="branding" role="banner">
 		<div class="ip-dashboard"><a href="https://ipdashboard.com/"><img src="<?php bloginfo( 'template_url' );?>/images/ip-dash.png"></a></div>
 		<nav id="access" role="navigation">
-			<h3 class="assistive-text"><?php _e( 'Main menu', 'twentyeleven' ); ?></h3>
-			<?php /*  Allow screen readers / text browsers to skip the navigation menu and get right to the good stuff. */ ?>
-			<div class="skip-link"><a class="assistive-text" href="#content" title="<?php esc_attr_e( 'Skip to primary content', 'twentyeleven' ); ?>"><?php _e( 'Skip to primary content', 'twentyeleven' ); ?></a></div>
-			<div class="skip-link"><a class="assistive-text" href="#secondary" title="<?php esc_attr_e( 'Skip to secondary content', 'twentyeleven' ); ?>"><?php _e( 'Skip to secondary content', 'twentyeleven' ); ?></a></div>
+			
 			<?php /* Our navigation menu.  If one isn't filled out, wp_nav_menu falls back to wp_page_menu. The menu assiged to the primary position is the one used. If none is assigned, the menu with the lowest ID is used. */ ?>
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'items_wrap' => '<ul id="%1$s" class="%2$s"><li class="phone"><img src="'.get_bloginfo('template_url').'/images/phone.png">'.cardinalPhone().'</li>%3$s</ul>' ) ); ?>
 			<?php
