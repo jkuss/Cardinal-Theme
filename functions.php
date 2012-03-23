@@ -43,6 +43,11 @@
  */
 if ( ! isset( $content_width ) )
 	$content_width = 584;
+	
+function pageCats(){
+	register_taxonomy_for_object_type('category', 'page');
+}
+add_action('init', 'pageCats');
 
 /**
  * Tell WordPress to run twentyeleven_setup() when the 'after_setup_theme' hook is run.
@@ -108,6 +113,7 @@ function twentyeleven_setup() {
 	//add_theme_support( 'post-formats', array( 'aside', 'link', 'gallery', 'status', 'quote', 'image' ) );
 	add_post_type_support( 'page', 'excerpt' );
 	
+	
 	register_post_type( 'cdnl_home_feature',
 		array(
 			'labels' => array(
@@ -120,6 +126,16 @@ function twentyeleven_setup() {
 		'supports' => array('title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','revisions')
 		)
 	);
+	
+	function my_expanded_request($q) {
+		if (isset($q['tag']) || isset($q['category_name'])) 
+					$q['post_type'] = array('post', 'page');
+		return $q;
+	}
+
+	
+	add_filter('request', 'my_expanded_request');  
+ 
 	
 	// Add support for custom backgrounds
 	//add_custom_background();
@@ -343,7 +359,7 @@ add_filter( 'excerpt_length', 'twentyeleven_excerpt_length' );
  */
 function twentyeleven_continue_reading_link() {
 	
-	return '<br><a class="read-more" href="'. esc_url( get_permalink() ) . '">' . __( '<img src="' . '/wp-content/themes/Cardinal-Theme' . '/images/arrow-small.gif" class="arrow">Learn&nbsp;More&nbsp;', 'twentyeleven' ) . '</a>';
+	return '<br><a class="read-more" href="'. esc_url( get_permalink() ) . '">' . __( '<img src="' . '/wp-content/themes/Cardinal-Theme' . '/images/arrow-small.gif" class="arrow">Learn&nbsp;More', 'twentyeleven' ) . '</a>';
 }
 
 /**
@@ -597,7 +613,7 @@ add_filter( 'body_class', 'twentyeleven_body_classes' );
 function popularWrapper($menu_id, $class){
 	
 	$before = '<img src="' . get_bloginfo( 'template_url' ) . '/images/arrow-big.gif" class="arrow">';
-	$wrapper = '<ul id="%1$s" class="%2$s '.$class.'"><li class="popular-title"><h3>'.wp_get_nav_menu_object($menu_id)->name.'</h3></li>%3$s<li><a href="#" class="view-all">View All Services</a></li></ul>';
+	$wrapper = '<ul id="%1$s" class="%2$s '.$class.'"><li class="popular-title"><h3>'.wp_get_nav_menu_object($menu_id)->name.'</h3></li>%3$s<li><a href="/services" class="view-all">View All Services</a></li></ul>';
 	
 	return wp_nav_menu( array( 'theme_location' => 'popular', 'items_wrap' => $wrapper, 'link_before' => $before ) );
 }

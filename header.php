@@ -63,8 +63,8 @@
 	//    after the API code downloads.
 	
 	function onYouTubePlayerAPIReady() {
-		console.log("API");
-		console.log(videos);
+		//console.log("API");
+		//console.log(videos);
 		
 		for (i = 0; i < videos.length; i++){
 			
@@ -119,7 +119,7 @@
 			pager: '.pager',
 			pagerAnchorBuilder: function(idx, slide) { 
 				return '<li><a href="#"></a></li>'; 
-			},
+			}
 			/*pause: true,
 			pauseOnPagerHover: true */
 		});
@@ -127,12 +127,12 @@
 		
 		$("#slideshow").on('mouseenter.ss', function(){
 			
-			console.log("in");
+			//console.log("in");
 			$('#slideshow').cycle('pause');
 			
 		}).on('mouseleave.ss', function(){
 			
-			console.log("out");
+			//console.log("out");
 			
 			if (!playing){
 				$('#slideshow').cycle('resume');

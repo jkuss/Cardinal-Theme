@@ -6,6 +6,9 @@
  * @subpackage Twenty_Eleven
  * @since Twenty Eleven 1.0
  */
+ 
+ 				//$catarr = get_the_category($post->ID);
+				//print_r ($catarr[0]->category_nicename);
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

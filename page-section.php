@@ -24,15 +24,48 @@ get_header(); ?>
 					
 
 				<?php endwhile; // end of the loop. ?>
-				<?php $newloop = new WP_Query( array( 'post_type' => 'page', 'post_status' => 'publish', 'posts_per_page' => -1, 'post_parent'=> $post->ID ) ); ?>
+				<?php 
+					
+				$hPages = new WP_Query( 
+							array( 
+								'post_type' => 'page', 
+								'post_status' => 'publish', 
+								'posts_per_page' => -1, 
+								'post_parent'=> $post->ID 
+							)
+				); 
+				
+				//print_r ( get_the_category($post->ID)->0 );
+				$catarr = get_the_category($post->ID);
+				//print_r ($catarr[0]->category_nicename);
+				
+				$args = array(
+					'category_name' => $catarr[0]->category_nicename,
+					'post_type' => array( 'page', 'post' ),
+					'post__not_in'  => array($post->ID),
+					'post_status' => 'publish', 
+					'posts_per_page' => -1, 
+					/*'post_parent'=> $post->ID */
+				);
+				$cPages = new WP_Query($args); 
+				
+				
+				
+				?>
 				<ul class="page-toc">
-				<?php while ( $newloop->have_posts() ) : $newloop->the_post(); ?>
+				<?php while ( $hPages->have_posts() ) : $hPages->the_post(); ?>
 						<li>
 						<?php the_title( '<a href="#page-' . $post->ID . '" title="' . the_title_attribute( 'echo=0' ) . '">', '</a>' ); ?>
 						</li>
 				<?php endwhile; ?>
+				<?php if (has_category()) {while ( $cPages->have_posts() ) : $cPages->the_post(); ?>
+						<li>
+						<?php the_title( '<a href="#page-' . $post->ID . '" title="' . the_title_attribute( 'echo=0' ) . '">', '</a>' ); ?>
+						</li>
+				<?php endwhile; }wp_reset_query();?>
+				
 				</ul>
-				<?php while ( $newloop->have_posts() ) : $newloop->the_post(); ?>
+				<?php while ( $hPages->have_posts() ) : $hPages->the_post(); ?>
 						
 						<div class="excerpt">
 							<?php the_title( '<h2 class="entry-title" id="page-'.$post->ID.'"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>
@@ -42,7 +75,17 @@ get_header(); ?>
 							</div>
 						</div>
 					
-				<?php endwhile; 
+				<?php endwhile; wp_reset_query();?>
+				<?php if (has_category()) {while ( $cPages->have_posts() ) : $cPages->the_post(); ?>
+						<div class="excerpt">
+							<?php the_title( '<h2 class="entry-title" id="page-'.$post->ID.'"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>
+						
+							<div class="excerpt-content">
+								<?php the_excerpt(); ?>
+							</div>
+						</div>
+					
+				<?php endwhile; }
 				wp_reset_query();
 				?>
 			</div><!-- #content -->

@@ -299,11 +299,16 @@ a:hover {
 	display: none;
 	float: left;
 	margin: 0;
+	padding:0;
 	position: absolute;
 	left: 0;
-	width: 188px;
+	
 	z-index: 99999;
 }
+#access ul ul li{
+	width:100%;	
+}
+
 #access ul ul ul {
 	left: 100%;
 	top: 0;
@@ -328,6 +333,8 @@ a:hover {
 	/*font-weight: bold;*/
 	
 }
+
+
 
 #access .phone {
 	color:#bababa;
@@ -959,6 +966,23 @@ section.ephemera .entry-title a span {
 #ie7 #access ul {
 	height:30px;
 }
+#ie7 #access ul ul {
+	width: 140px;
+	height: auto;
+	display:none;
+}
+#ie7 #access li:hover {
+	display:inline;	
+}
+#ie7 #access li:hover ul {
+	
+	display:block;
+}
+#ie7 #access li:hover ul li {
+	
+	display:block;
+}
+
 
 #ie7 #access .phone {
 	height:41px;
