@@ -352,7 +352,7 @@ endif; // twentyeleven_admin_header_image
 function twentyeleven_excerpt_length( $length ) {
 	return 20;
 }
-add_filter( 'excerpt_length', 'twentyeleven_excerpt_length' );
+//add_filter( 'excerpt_length', 'twentyeleven_excerpt_length' );
 
 /**
  * Returns a "Continue Reading" link for excerpts
@@ -371,14 +371,14 @@ function twentyeleven_continue_reading_link() {
 function twentyeleven_auto_excerpt_more( $more ) {
 	return ' &hellip;' . twentyeleven_continue_reading_link();
 }
-add_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' );
+//add_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' );
 
 /**
  * Adds a pretty "Continue Reading" link to custom post excerpts.
  *
  * To override this link in a child theme, remove the filter and add your own
  * function tied to the get_the_excerpt filter hook.
- */
+ 
 function twentyeleven_custom_excerpt_more( $output ) {
 	if ( has_excerpt() && ! is_attachment() ) {
 		$output .= twentyeleven_continue_reading_link();
@@ -386,9 +386,23 @@ function twentyeleven_custom_excerpt_more( $output ) {
 	return $output;
 }
 add_filter( 'get_the_excerpt', 'twentyeleven_custom_excerpt_more' );
+*/
+
+function myexcerpt($limit) {
+	$excerpt = explode(' ', get_the_excerpt(), $limit);
+	if (count($excerpt)>=$limit) {
+		array_pop($excerpt);
+		$excerpt = implode(" ",$excerpt).'...' .  twentyeleven_continue_reading_link();
+	} else {
+		$excerpt = implode(" ",$excerpt);
+	} 
+	$excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
+	return $excerpt;
+}
 
 
 //custom page read more separate from front
+
 
 
 /**
@@ -612,8 +626,19 @@ add_filter( 'body_class', 'twentyeleven_body_classes' );
 /* JK */
 function popularWrapper($menu_id, $class){
 	
+	//$before = '<img src="' . get_bloginfo( 'template_url' ) . '/images/arrow-big.gif" class="arrow">';
+	
+	/*
+	$before = '<span class="redArrow">';
+        $after = '</span>';	
+$wrapper = '<ul id="%1$s" class="%2$s '.$class.'"><li class="popular-title"><h3>'.wp_get_nav_menu_object($menu_id)->name.'</h3></li>%3$s<li><a href="/products-and-services/" class="view-all">View All Services</a></li></ul>';
+	
+	return wp_nav_menu( array( 'theme_location' => 'popular', 'items_wrap' => $wrapper, 'before' => $before, 'after' => $after ) );
+	
+	*/
+	
 	$before = '<img src="' . get_bloginfo( 'template_url' ) . '/images/arrow-big.gif" class="arrow">';
-	$wrapper = '<ul id="%1$s" class="%2$s '.$class.'"><li class="popular-title"><h3>'.wp_get_nav_menu_object($menu_id)->name.'</h3></li>%3$s<li><a href="/services" class="view-all">View All Services</a></li></ul>';
+	$wrapper = '<ul id="%1$s" class="%2$s '.$class.'"><li class="popular-title"><h3>'.wp_get_nav_menu_object($menu_id)->name.'</h3></li>%3$s<li><a href="/products-and-services/" class="view-all">View All Services</a></li></ul>';
 	
 	return wp_nav_menu( array( 'theme_location' => 'popular', 'items_wrap' => $wrapper, 'link_before' => $before ) );
 }
@@ -650,5 +675,4 @@ function makeFooterMenu($parent, $class){
 function cardinalPhone(){
 	return '(847) 905-7122';
 }
-
 

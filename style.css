@@ -32,10 +32,11 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	background: #fff;
-	line-height: 1;
+	/*line-height: 1;*/ /*Commented by CS on 2011-03-29*/
 }
 ol, ul {
-	list-style: none;
+	list-style: inherit; /* CS changed from "none" 4/2/2012 */
+	margin-left:20px; /* CS Added 4/2/2012 */
 }
 table {/* tables still need 'cellspacing="0"' in the markup */
 	border-collapse: separate;
@@ -66,9 +67,13 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	
+	
+	
 }
 #page {
 	
+	min-width:960px;
+	overflow-x:hidden;
 }
 #branding {
 	width:960px;
@@ -114,9 +119,14 @@ body {
 
 body, input, textarea {
 	color: #ffffff;
-	font: 16px/22px "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+	font-size:14px;
+	line-height:21px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
 	font-weight: normal;
 }
+
+input[type=submit] {color:#000000;} /* Added by CS on 04/09/2012 */
+
 body {
 	background-color:#000;
 }
@@ -130,6 +140,26 @@ h1,h2,h3,h4,h5,h6 {
 	font-family: 'Rokkitt', serif;
 	color:#f0f5ff;
 }
+/* Custom CS Added 2012-03-29 */
+h1 {
+    font-size: 54px;
+    line-height: 54px;
+    margin-top: 21px;
+    margin-bottom: 42px;
+}
+h2 {
+    font-size: 34px;
+    line-height: 42px;
+    margin-top: 42px;
+    margin-bottom: 21px;
+}
+h3 {
+    font-size: 22px;
+    line-height: 42px;
+    margin-top: 21px;
+    margin-bottom: 0px;
+}
+/* End Custom CS */
 
 /* Text elements */
 p {
@@ -231,6 +261,7 @@ a:hover {
 	top:13px;
 	left:-10px;
 	float:left;
+	margin-top:0px; /* Added by CS on 4/5/2012*/
 }
 #site-title a {
 	font-size: 30px;
@@ -306,7 +337,8 @@ a:hover {
 	z-index: 99999;
 }
 #access ul ul li{
-	width:100%;	
+	width:100%;
+	white-space: nowrap;
 }
 
 #access ul ul ul {
@@ -405,14 +437,16 @@ a:hover {
 }
 
 .home .entry-content{
-	font-size: 18px;
+	font-size: 14px; /* Changed from 18px by CS on 2011-03-29 */
 	margin-bottom:45px;	
 	width: 460px;
 }
 
+.entry-content a{ text-decoration:underline;} /* Addedby CS on 2011-04-03 */
+
 .home #primary .menu {
 	display:inline-block;
-	margin-top:45px;
+	margin-top:0px; /*Changed by CS from 45px on 2012-04-05 */
 }
 
 .home #slideshow-container {
@@ -420,12 +454,17 @@ a:hover {
 	width:460px;
 	font-size:14px;
 	margin-bottom:35px;
-	background-color:#000000;
-	background-color:rgba(0,0,0,.6);
+	background-color:#03131a;
+	/*background-color:rgba(0,0,0,.6);*/
 	position:relative;
 }
-.home #slideshow {
-	
+.home #slideshow .slide{
+	background-color:#03131a;
+	height:380px;
+}
+
+.home #slideshow .feature-content {
+	height: 264px;
 }
 
 .home #slideshow .feature-content img, .home #slideshow .excerpt-content p{
@@ -438,7 +477,7 @@ a:hover {
 }
 
 .home #slideshow .excerpt{
-	padding: 15px 25px 0 25px;
+	padding: 7px 25px 0 25px; /*CS changed from padding: 15px 25px 0 25px; on 04/05/2012 */
 	margin-bottom:0;
 }
 
@@ -466,6 +505,7 @@ a:hover {
 	list-style:none;
 	margin:0 auto;
 	text-align:center;
+	background-color:#03131a;
 	
 }
 
@@ -485,7 +525,7 @@ a:hover {
 
 #primary .hentry {
 	margin-bottom:35px;
-	font-size:18px;
+	font-size:14px; /*Changed from 18px by CS on 2011-03-29 */
 }
 
 #primary .hentry p {
@@ -502,7 +542,9 @@ a:hover {
 }
 #primary .page-toc li {
 	display:inline-block;
-	width:49%;	
+	width:49%;
+	vertical-align: top;
+	margin-bottom: 10px;	
 }
 #primary .page-toc li a {
 	font-size:14px;
@@ -522,7 +564,7 @@ a:hover {
 }
 
 #primary .excerpt {
-	margin-bottom:85px;	
+	margin-bottom:0px; /* Changed by CS from 85px on 04/05/2012 */	
 	
 }
 
@@ -953,7 +995,9 @@ section.ephemera .entry-title a span {
 ----------------------------------------------- */
 
 
-
+#ie7 .breadcrumbs, #ie8 .breadcrumbs {
+	margin:0px 0 12px 0;
+}
 
 /* =IE7
 ----------------------------------------------- */
@@ -993,12 +1037,17 @@ section.ephemera .entry-title a span {
 	width: 300px;
 }
 
-#ie7 .home #slideshow-container, #ie8 .home #slideshow-container{
-	background-color:#000000;	
+#ie7 .home #slideshow-container .pager, #ie8 .home #slideshow-container .pager{
 	padding-bottom:10px;
 }
 
-
+#ie7 .home #primary, #ie7 .home .entry-content {
+	margin-bottom:0;
+	padding-bottom:0;
+}
+#ie7 .home #colophon {
+	margin-top:0px;
+}
 
 
 
@@ -1016,9 +1065,46 @@ section.ephemera .entry-title a span {
 	
 }
 
+#ie8 #menu-popular-services img{
+	vertical-align:middle;
+	
+}
 
 
 
+li.phone a {
+	
+	padding:0 !important;
+	margin:0 0 0 0px !important;
+	
+	float:right;
+}
+
+.DisplayTable{border:1px solid white;font-size:14px;border-collapse:collapse;}
+.DisplayTable td, .DisplayTable th {padding:5px 8px;border:1px solid white;}
+.DisplayTable th {font-weight:bold;background-color:rgba(0,0,0,.25);}
+
+.wpcf7 table {border-collapse:collapse;}  /* Added by CS on 4/5/2012 */
+.wpcf7 td {padding:2px 8px 2px 0;}  /* Added by CS on 4/5/2012 */
+
+.alignleft {float:left;} /* Added by CS on 4/4/2012 */
+
+#menu-popular-services a {text-decoration:none; } /* Added by CS on 4/5/2012 */
+#menu-popular-services a:hover {text-decoration:underline;} /* Added by CS on 4/5/2012 */
+#menu-popular-services a.view-all {text-decoration:underline;} /* Added by CS on 4/5/2012 */
+
+#slideshow-container h2 {margin-top:0px;} /* Added by CS on 4/5/2012 */
+#slideshow-container h2 {line-height:100%;}  /* Added by CS on 4/5/2012 */
+
+span.jobtitle {cursor:pointer;}
+table.job-table {margin-top:20px;margin-bottom:10px;}
+table.job-table th, table.job-table td{padding:3px;}
+table.job-table th {text-align:right;white-space:nowrap;padding-right:8px;}
+table.job-table td {text-align:left;}
+table.job-apply-table textarea,
+table.job-apply-table input[type=text] {color:#000000;}
+table.job-apply-table td,
+table.job-apply-table th {padding:3px;}
 
 
-
+/*span.redArrow {background-image:url(images/arrow-big.gif);background-repeat:no-repeat;height:23px;padding-left:30px;display:inline-block;margin-bottom:5px;}*/

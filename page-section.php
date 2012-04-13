@@ -37,18 +37,21 @@ get_header(); ?>
 				
 				//print_r ( get_the_category($post->ID)->0 );
 				$catarr = get_the_category($post->ID);
+				//print_r ($catarr[0]);
+				
+				
 				//print_r ($catarr[0]->category_nicename);
-				
-				$args = array(
-					'category_name' => $catarr[0]->category_nicename,
-					'post_type' => array( 'page', 'post' ),
-					'post__not_in'  => array($post->ID),
-					'post_status' => 'publish', 
-					'posts_per_page' => -1, 
-					/*'post_parent'=> $post->ID */
-				);
-				$cPages = new WP_Query($args); 
-				
+				if ($catarr[0]){
+					$args = array(
+						'category_name' => $catarr[0]->category_nicename,
+						'post_type' => array( 'page', 'post' ),
+						'post__not_in'  => array($post->ID),
+						'post_status' => 'publish', 
+						'posts_per_page' => -1, 
+						/*'post_parent'=> $post->ID */
+					);
+					$cPages = new WP_Query($args); 
+				}
 				
 				
 				?>
@@ -58,7 +61,7 @@ get_header(); ?>
 						<?php the_title( '<a href="#page-' . $post->ID . '" title="' . the_title_attribute( 'echo=0' ) . '">', '</a>' ); ?>
 						</li>
 				<?php endwhile; ?>
-				<?php if (has_category()) {while ( $cPages->have_posts() ) : $cPages->the_post(); ?>
+				<?php if ($catarr[0]) {while ( $cPages->have_posts() ) : $cPages->the_post(); ?>
 						<li>
 						<?php the_title( '<a href="#page-' . $post->ID . '" title="' . the_title_attribute( 'echo=0' ) . '">', '</a>' ); ?>
 						</li>
@@ -71,17 +74,17 @@ get_header(); ?>
 							<?php the_title( '<h2 class="entry-title" id="page-'.$post->ID.'"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>
 						
 							<div class="excerpt-content">
-								<?php the_excerpt(); ?>
+								<?php echo myexcerpt(30); ?>
 							</div>
 						</div>
 					
 				<?php endwhile; wp_reset_query();?>
-				<?php if (has_category()) {while ( $cPages->have_posts() ) : $cPages->the_post(); ?>
+				<?php if ($catarr[0]) {while ( $cPages->have_posts() ) : $cPages->the_post(); ?>
 						<div class="excerpt">
 							<?php the_title( '<h2 class="entry-title" id="page-'.$post->ID.'"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>
 						
 							<div class="excerpt-content">
-								<?php the_excerpt(); ?>
+								<?php echo myexcerpt(30); ?>
 							</div>
 						</div>
 					

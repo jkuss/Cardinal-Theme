@@ -35,8 +35,10 @@ get_header(); ?>
 												<div id="<?php echo get_post_meta($post->ID, 'youtube', true); ?>"></div>
 												<script>
 													videos.push('<?php echo get_post_meta($post->ID, 'youtube', true); ?>'); 
+													
 												</script>
-												
+											<?php else : ?>
+												<img width="460" height="264" src="<?php bloginfo( 'template_url' );?>/images/default.png" class="attachment-single-post-thumbnail wp-post-image" alt="beaker" title="beaker">
 											<?php endif; ?>
 										
 									</div>
@@ -44,17 +46,21 @@ get_header(); ?>
 										<?php the_title( '<h2 class="entry-title"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>
 									
 										<div class="excerpt-content">
-											<?php the_excerpt(); ?>
+											<?php echo myexcerpt(14); ?>
 										</div>
 									</div>
 								</div>
+								
 							<?php endwhile; 
+							
 							wp_reset_query();
+							
 							?>
 							
 							<!--<iframe width="460" height="264" src="http://www.youtube.com/embed/qvEsuV3Z6g0?rel=0" frameborder="0" allowfullscreen></iframe>
 							<iframe width="460" height="264" src="http://www.youtube.com/embed/BhUZmvAEIN4?rel=0" frameborder="0" allowfullscreen></iframe>-->
 						</div>
+						<?php echo "<script>videosReady();</script>"; ?>
 						<div class="flipper prev"></div>
 						<div class="flipper next"></div>
 						<ul class="pager"></ul>

@@ -22,6 +22,8 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
+<link rel="shortcut icon" href="http://www.cardinal-ip.com/favicon.ico" type="image/x-icon" /> 
+
 <title><?php
 	/*
 	 * Print the <title> tag based on what is being viewed.
@@ -50,99 +52,11 @@
 <?php //if (is_home_page() ): ?>
 	<script type="text/javascript" src="<?php bloginfo( 'template_url' );?>/js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="<?php bloginfo( 'template_url' );?>/js/jquery.cycle.all.js"></script>
-	
+	<script type="text/javascript" src="<?php bloginfo( 'template_url' );?>/js/swfobject.js"></script>
+	<script type="text/javascript" src="<?php bloginfo( 'template_url' );?>/js/slideshow.js"></script>
 	<script>
-	var videos= [];
-	
-	var tag = document.createElement('script');
-	tag.src = "http://www.youtube.com/player_api";
-	var firstScriptTag = document.getElementsByTagName('script')[0];
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-	
-	// 3. This function creates an <iframe> (and YouTube player)
-	//    after the API code downloads.
-	
-	function onYouTubePlayerAPIReady() {
-		//console.log("API");
-		//console.log(videos);
-		
-		for (i = 0; i < videos.length; i++){
-			
-			player = new YT.Player(videos[i], {
-				width: '460',
-				height: '264',
-				videoId: videos[i],
-				events: {
-				'onReady': onPlayerReady,
-				'onStateChange': onPlayerStateChange
-				}
-			});
-			
-		}
-	
-	}
-	
-	// 4. The API will call this function when the video player is ready.
-	function onPlayerReady(event) {
-		//event.target.playVideo();
-	}
-	
-	// 5. The API calls this function when the player's state changes.
-	//    The function indicates that when playing a video (state=1),
-	//    the player should play for six seconds and then stop.
-	var playing = false;
-	
-	function onPlayerStateChange(event) {
-		console.log("change", event.data);
-		if (event.data != -1 && event.data != 0){
-			$('#slideshow').cycle('pause');
-			playing = true;
-		}
-		
-		if (event.data == 0){
-			setTimeout(function(){
-				$('#slideshow').cycle('resume');
-				playing = false;
-			}, 3000);
-		}
-	}
 	
 	
-	
-	$(document).ready(function() {
-		$("#slideshow").cycle({ 
-			fx:      'scrollHorz', 
-			speed:    600, 
-			timeout:  4000,
-			prev: '.prev',
-			next: '.next',
-			pager: '.pager',
-			pagerAnchorBuilder: function(idx, slide) { 
-				return '<li><a href="#"></a></li>'; 
-			}
-			/*pause: true,
-			pauseOnPagerHover: true */
-		});
-		
-		
-		$("#slideshow").on('mouseenter.ss', function(){
-			
-			//console.log("in");
-			$('#slideshow').cycle('pause');
-			
-		}).on('mouseleave.ss', function(){
-			
-			//console.log("out");
-			
-			if (!playing){
-				$('#slideshow').cycle('resume');
-			}
-			
-		});
-	   
-	});
-	
-		
 	</script>
 <?php //endif; ?>
 <!--[if lt IE 9]>
