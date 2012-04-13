@@ -46,7 +46,7 @@ get_header(); ?>
 										<?php the_title( '<h2 class="entry-title"><a href="' . get_permalink() . '" title="' . the_title_attribute( 'echo=0' ) . '" rel="bookmark">', '</a></h2>' ); ?>
 									
 										<div class="excerpt-content">
-											<?php echo myexcerpt(14); ?>
+											<?php echo myexcerpt(14, get_post_meta($post->ID, 'url', true)); ?>
 										</div>
 									</div>
 								</div>

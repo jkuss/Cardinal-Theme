@@ -357,9 +357,10 @@ function twentyeleven_excerpt_length( $length ) {
 /**
  * Returns a "Continue Reading" link for excerpts
  */
-function twentyeleven_continue_reading_link() {
+function twentyeleven_continue_reading_link($url) {
+	$gurl = $url? $url : esc_url( get_permalink() );
 	
-	return '<br><a class="read-more" href="'. esc_url( get_permalink() ) . '">' . __( '<img src="' . '/wp-content/themes/Cardinal-Theme' . '/images/arrow-small.gif" class="arrow">Learn&nbsp;More', 'twentyeleven' ) . '</a>';
+	return '<br><a class="read-more" href="'.  $gurl . '">' . __( '<img src="' . '/wp-content/themes/Cardinal-Theme' . '/images/arrow-small.gif" class="arrow">Learn&nbsp;More', 'twentyeleven' ) . '</a>';
 }
 
 /**
@@ -388,13 +389,17 @@ function twentyeleven_custom_excerpt_more( $output ) {
 add_filter( 'get_the_excerpt', 'twentyeleven_custom_excerpt_more' );
 */
 
-function myexcerpt($limit) {
+function myexcerpt($limit, $url) {
 	$excerpt = explode(' ', get_the_excerpt(), $limit);
 	if (count($excerpt)>=$limit) {
 		array_pop($excerpt);
-		$excerpt = implode(" ",$excerpt).'...' .  twentyeleven_continue_reading_link();
+		$excerpt = implode(" ",$excerpt).'...' .  twentyeleven_continue_reading_link($url);
 	} else {
-		$excerpt = implode(" ",$excerpt);
+		if ($url){
+			$excerpt = implode(" ",$excerpt).'...' .  twentyeleven_continue_reading_link($url);
+		}else{
+			$excerpt = implode(" ",$excerpt);
+		}
 	} 
 	$excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
 	return $excerpt;
