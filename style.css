@@ -1065,8 +1065,8 @@ section.ephemera .entry-title a span {
 	
 }
 
-#ie8 #menu-popular-services img{
-	vertical-align:middle;
+#ie8 #menu-popular-services img, #ie9 #menu-popular-services img, #ie9 .arrow{
+	vertical-align:middle !important;
 	
 }
 

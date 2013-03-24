@@ -360,7 +360,9 @@ function twentyeleven_excerpt_length( $length ) {
 function twentyeleven_continue_reading_link($url) {
 	$gurl = $url? $url : esc_url( get_permalink() );
 	
-	return '<br><a class="read-more" href="'.  $gurl . '">' . __( '<img src="' . '/wp-content/themes/Cardinal-Theme' . '/images/arrow-small.gif" class="arrow">Learn&nbsp;More', 'twentyeleven' ) . '</a>';
+	
+		return '<br><a class="read-more" href="'.  $gurl . '">' . __( '<img src="' . '/wp-content/themes/Cardinal-Theme' . '/images/arrow-small.gif" class="arrow">Learn&nbsp;More', 'twentyeleven' ) . '</a>';
+	
 }
 
 /**
@@ -669,8 +671,8 @@ function makeFooterMenu($parent, $class){
 		
 	  );
 	  echo '<div><ul class="menu '.$class.'">';
-	  
-	  echo '<li class="footer-title"><h3><a href="'.get_page_link($parent).'">'.get_the_title($parent).'</a></h3></li>';
+	  $hasCustomName = get_post_meta($parent, 'ShortTitle', true);
+	  echo '<li class="footer-title"><h3><a href="'.get_page_link($parent).'">'. $hasCustomName ? $hasCustomName : get_the_title($parent) .'</a></h3></li>';
 	  
 	  wp_list_pages($args);
 	  echo '</ul></div>';
